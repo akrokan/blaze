@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Blaze') }}</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
+    <x-page-header />
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        <div class="min-h-screen bg-gray-900 text-gray-200 md:pb-8">
+            <!--    Navigation (Frontend)   -->
+            <livewire:navigation>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
+            <!--    Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
+        <div class="h-12 md:h-16 bg-gray-900 text-gray-200 border-t-2 border-gray-800">
+            <div class="flex container mx-auto md:justify-between font-semibold items-center h-full">
+                <div class="hidden md:flex items-center w-1/3">
+
+                </div>
+                <div class="flex flex-row items-center justify-center w-full md:w-1/3">
+                    <span>&copy 2021 Hugues DATIN</span>
+                </div>
+                <div class="hidden md:flex items-center justify-center w-1/3">
+
+                </div>
+            </div>
+        </div>
+    <livewire:scripts />
     </body>
 </html>

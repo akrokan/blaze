@@ -1,3 +1,43 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer base {
+    @font-face {
+      font-family: Lato;
+      font-weight: 400;
+      src: url(../fonts/Lato/Lato-Light.ttf) format("ttf");
+    }
+    @font-face {
+      font-family: Nunito;
+      font-weight: 600;
+      src: url(../fonts/Nunito/Nunito-SemiBold.ttf) format("ttf");
+    }
+  article a {
+    @apply text-blue-600;
+  }
+  article a:hover {
+    @apply text-green-600;
+  }
+  article blockquote {
+    @apply bg-white border-l-2 max-w-md p-2 shadow-inner text-gray-500;
+  }
+  article hr {
+    @apply border-4 items-center justify-center max-w-xs mb-3 mt-3 text-gray-800;
+  }
+  article image {
+    @apply w-full justify-items-center mx-auto justify-center;
+  }
+  article p {
+    @apply py-2 text-justify;
+  }
+  article h1 {
+    @apply text-2xl;
+  }
+  article h2 {
+    @apply text-xl;
+  }
+  article h3 {
+    @apply text-lg;
+  }
+}
