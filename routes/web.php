@@ -8,11 +8,6 @@ use App\Http\Livewire\ShowPosts;
 use App\Http\Livewire\ShowPostsByTag;
 use App\Http\Livewire\ShowPostsByUser;
 
-// Demo subdomain
-Route::domain('demo.localhost')->group(function () {
-    Route::get('/',     [PageController::class, 'about'])->name('about');
-});
-
 // Guest
 Route::get('/',                  ShowPosts::class)->name('home');
 Route::get('/about',        [PageController::class, 'about'])->name('about');

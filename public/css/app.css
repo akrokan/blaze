@@ -790,7 +790,7 @@ article blockquote {
   max-width: 28rem;
   border-left-width: 2px;
   --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
   padding: 0.5rem;
   --tw-text-opacity: 1;
   color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -823,19 +823,57 @@ article p {
   text-align: justify;
 }
 
+article pre {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(209, 213, 219, var(--tw-text-opacity));
+  --tw-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 article h1 {
   font-size: 1.5rem;
   line-height: 2rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
 }
 
 article h2 {
   font-size: 1.25rem;
   line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
 }
 
 article h3 {
   font-size: 1.125rem;
   line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
+}
+
+article h4 {
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
+}
+
+article h5, h6 {
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgba(147, 197, 253, var(--tw-text-opacity));
 }
 
 .container {
