@@ -15,10 +15,11 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
+        "user_id",
+//        "author",
         "title",
         "slug",
         "content",
-        "user_id",
     ];
 
     public function comments()
@@ -39,5 +40,6 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+//        return $this->belongsTo(User::class, 'author', 'username');
     }
 }

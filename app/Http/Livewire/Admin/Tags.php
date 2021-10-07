@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\Tag as LiveTag;
+use App\Models\Tag;
 use Livewire\Component;
 
-class Tag extends Component
+class Tags extends Component
 {
     public $tags = [];
     public $tag  = '';
@@ -16,12 +16,12 @@ class Tag extends Component
 
     public function mount()
     {
-        $this->tags = LiveTag::orderBy('name')->get();
+        $this->tags = Tag::orderBy('name')->get();
     }
 
     public function hydrate()
     {
-        $this->tags = LiveTag::orderBy('name')->get();
+        $this->tags = Tag::orderBy('name')->get();
     }
 
     public function hover()
@@ -36,11 +36,15 @@ class Tag extends Component
 
     public function addTag()
     {
-        $tag = LiveTag::create([
-            'name' => $this->tag
-        ]);
+        if ($this->tag) 
+        {
+            $this->tag = Tag::firstOrCreate([
+                'name' => $this->tag
+            ]);
 
-        $this->tags->prepend($tag);
+            $this->tags->prepend($this->tag);
+        }
+
         $this->tag = '';
 
         $this->emit('refresh');
@@ -48,13 +52,13 @@ class Tag extends Component
 
     public function deleteTag($id)
     {
-        LiveTag::destroy($id);
+        Tag::destroy($id);
 
         $this->emit('refresh');
     }
 
     public function render()
     {
-        return view('livewire.tag');
+        return view('livewire.admin.tags');
     }
 }

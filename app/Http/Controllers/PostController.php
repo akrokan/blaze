@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -15,32 +16,13 @@ class PostController extends Controller
         return view('dashboard.create');
     }
 
-    public function delete()
-    {
-        
-    }
-
-    public function destroy($id)
-    {
-        Post::destroy($id);
-
-        return back();
-    }
-
     /*
-    //  @param \App\Models\Post $post
+
     */
-    public function show($slug)
+    public function store(StorePostRequest $request)
     {
-//        dd($post);
-        $post = Post::where('slug', $slug)->firstOrFail();
-        $tags = Tag::orderBy('name')->get();
+//        $request = $request->validated();
 
-        return view('show', compact('post', 'tags'));
-    }
-
-    public function store(Request $request)
-    {
         /*
             Check if $request exist
         */
@@ -101,41 +83,26 @@ class PostController extends Controller
             'title' =>      $title,
             'slug' =>       $slug,
             'content' =>    $content,
-            'user_id' => Auth::user()->id
+            'user_id' =>    Auth::user()->id
         ]);
 
         /*
             Process Tags
         */
-        $names = explode(', ',$request->get('tags'));
-        $ids = [];
-        foreach($names as $name)
+        if (!empty($request->get('tags')))
         {
-            $tag = Tag::firstOrCreate(['name' => $name]);
-            $ids[] = $tag->id;
+            $names = explode(', ',$request->get('tags'));
+            $ids = [];
+
+            foreach ($names as $name)
+            {
+                $tag = Tag::firstOrCreate(['name' => $name]);
+                $ids[] = $tag->id;
+            }
+
+            $post->tags()->sync($ids);
         }
-        $post->tags()->sync($ids);
 
         return redirect()->route('dashboard');          
     }
-
-    public function switchState($id)
-    {
-        $post = Post::find($id);
-
-        /*
-            Switch post state
-            online <--> offline
-        */
-        if ($post->online == 0) {
-            $post->online = 1;
-        } else {
-            $post->online = 0;
-        }
-
-        $post->save();
-
-        return back();
-    }
-
 }

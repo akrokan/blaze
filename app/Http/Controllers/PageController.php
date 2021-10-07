@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,44 +14,16 @@ class PageController extends Controller
     {
         $post = Post::where('title', 'About')->first();
         $tags = Tag::orderBy('name')->get();
-        //dd($post);
+
         return view('about', compact('post', 'tags'));
     }
 
     public function dashboard()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $comments = Comment::All()->count();
+        $posts    = Post::orderBy('id')->get();
+        $users    = User::All()->count();
 
-        return view('dashboard', compact('posts'));
+        return view('dashboard', compact('comments', 'posts', 'users'));
     }
-
-    public function home()
-    {
-        $posts = Post::where('online', 1)->latest()->paginate(10);
-        $tags = Tag::orderBy('name')->get();
-
-        return view('index', compact('posts', 'tags'));
-    }
-
-    public function comments()
-    {
-        $comments = Comment::orderBy('created_at', 'desc')->get();
-
-        return view('dashboard.comments', compact('comments'));
-    }
-
-    public function posts()
-    {
-        $posts = Post::orderBy('created_at', 'desc')->get();
-
-        return view('dashboard.posts', compact('posts'));
-    }
-
-    public function tags()
-    {
-//        $posts = Post::orderBy('created_at', 'desc')->get();
-
-        return view('dashboard.tags');
-    }
-
 }

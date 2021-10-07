@@ -1,9 +1,9 @@
-<div class="flex flex-col-reverse w-full items-start md:flex-row md:justify-center">
-    <div class="max-w-screen-md w-full">
+<div class="container mx-auto md:max-w-screen-lg w-full flex flex-col-reverse items-start md:flex-row md:justify-center">
+    <div class="w-full md:max-w-3xl">
         @if (isset($posts) && ! $posts->isEmpty())
             <div class="flex flex-col">
                 @foreach ($posts as $post)
-                    <div class="bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg mb-4">
+                    <div class="bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg md:mb-4">
                         <article class="p-2 tracking-wide md:p-4">
                             @if (isset($tags) && ! $tags->isEmpty())
                                 <div class="flex flex-rows items-center justify-end text-xs">
@@ -15,7 +15,7 @@
                             <h1 class="font-bold text-gray-400 text-xl mb-2">
                                 <a href="{{ url('/post/' .$post->slug) }}" class="text-blue-300 hover:text-green-500 text-2xl mb-2 font-medium">{{ $post->title }}</a></h1>
                             {{ Illuminate\Mail\Markdown::parse(Str::limit($post->content, 300, $end='...')) }}
-                            <div class="flex flex-row items-center justify-between mt-4">
+                            <div class="flex flex-row items-center justify-between md:mt-4">
                                 <a href="{{ url('/post/' .$post->slug) }}"
                                     class="text-blue-300 hover:text-green-500 hover:underline">Read more</a>
                                 <div class="flex flex-row">
@@ -30,16 +30,17 @@
                 @endforeach
             </div>
         @else
-            <div class="flex flex-col bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg md:p-4">
+            <div class="flex flex-col bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg p-2 md:mb-4 md:p-4">
                 <span>Nothing to see here</span>
             </div>
         @endif
+        {{ $posts->links() }}
     </div>
-    <div class="flex flex-col">
-        <div class="md:max-w-xs md:ml-4 p-2 border-1 bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg md:mb-4">
+    <div class="flex flex-col md:max-w-xs">
+        <div class="md:ml-4 p-2 border-1 bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg md:mb-4">
             @include('partials.tags-field')
         </div>
-        <div class="md:max-w-xs md:ml-4 p-2 border-1 bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg">
+        <div class="hidden md:block md:ml-4 p-2 border-1 bg-gray-800 border-t-4 border-gray-700 rounded-sm shadow-lg md:mb-4">
             <x-label>Social links</x-label>
             <x-nav-link href="https://github.com/akrokan/blaze" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" 

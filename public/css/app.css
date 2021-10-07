@@ -760,21 +760,16 @@ select {
   outline: 1px auto -webkit-focus-ring-color;
 }
 
-@font-face {
-  font-family: Lato;
-
-  font-weight: 400;
-
-  src: url(/fonts/Lato-Light.ttf?bfc37ff1d5543ecd4ec661f4ab38622e) format("ttf");
-}
-
-@font-face {
-  font-family: Nunito;
-
-  font-weight: 600;
-
-  src: url(/fonts/Nunito-SemiBold.ttf?06337b2efe0c0d52bcb6a41f34dafaca) format("ttf");
-}
+/*    @font-face {
+      font-family: Lato;
+      font-weight: 400;
+      src: url(../fonts/Lato/Lato-Light.ttf) format("ttf");
+    }
+    @font-face {
+      font-family: Nunito;
+      font-weight: 600;
+      src: url(../fonts/Nunito/Nunito-SemiBold.ttf) format("ttf");
+    }*/
 
 article a {
   --tw-text-opacity: 1;

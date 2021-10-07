@@ -15,6 +15,9 @@
                 </div>
             </div>
         @endif
+        @error('title')
+            <div class="alert alert-danger bg-red-300 border-l-2">{{ $message }}</div>
+        @enderror
     </div>
     <div class="flex mt-1">
         <form method="POST" action="{{ url('/dashboard/post/store') }}" enctype="multipart/form-data" class="w-full">

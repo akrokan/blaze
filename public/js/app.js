@@ -3802,18 +3802,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 /*
-window.onload = function () {
-	var addr1 = document.getElementById("off").addEventListener('click', onoff(), false);
-    var addr2 = document.getElementById("on").addEventListener ('click', onoff(), false);
-}
-
-function onoff()
-{
-	if (addr1.id == "on")	addr1.id = "off";
-	else			        addr1.id = "on";
-	if (addr2.id == "on")	addr2.id = "off";
-	else			        addr2.id = "on";
-}
+	A nicer kind of <hr>
 */
 
 
@@ -3823,6 +3812,15 @@ while (hr = document.querySelector('hr')) {
   center.appendChild(content);
   hr.replaceWith(center);
 }
+/*
+	Modalify each <img>
+*/
+
+
+var imgs = document.querySelectorAll("img");
+imgs.forEach(function (img) {
+  img.setAttribute('x-on:click', 'modal = true; window.livewire.emit("showImg", { src : "' + img.src + '" })');
+});
 
 /***/ }),
 

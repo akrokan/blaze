@@ -8,19 +8,19 @@ use Livewire\Component;
 
 class ShowPostsByTag extends Component
 {
-    public $posts = [];
-    public $post  = '';
     public $tags  = [];
     public $tag   = '';
 
     public function mount()
     {
-        $this->posts = Tag::where('name', $this->tag)->first()->post()->get();
         $this->tags  = Tag::orderBy('name')->get();
     }
 
     public function render()
     {
-        return view('livewire.show-posts');
+        $tag = Tag::where('name', $this->tag)->first();
+        $posts = $tag->posts()->online(1)->paginate(5);
+
+        return view('livewire.show-posts', ['posts' => $posts]);
     }
 }

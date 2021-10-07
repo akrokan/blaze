@@ -26,11 +26,12 @@ class PostFactory extends Factory
         $slug = Str::slug($title, '-');
 
         return [
+//            'author' => $this->faker->userName(),
+            'user_id' => rand(1,5),
             'title' => $title,
             'slug' => $slug,
             'content' => $this->faker->paragraphs(4, true),
             'online' => 1,
-            'user_id' => rand(1,5),
         ];
     }
 }

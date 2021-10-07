@@ -5,21 +5,25 @@ namespace App\Http\Livewire;
 use App\Models\Post;
 use App\Models\Tag;
 use Livewire\Component;
+//use Livewire\WithPagination;
 
 class ShowPosts extends Component
 {
-    public $posts = [];
-    public $post  = '';
     public $tags  = [];
+
+//    use WithPagination;
+
+    protected $paginationTheme = 'tailwind';
 
     public function mount()
     {
-        $this->posts = Post::where('online', 1)->latest()->get();
         $this->tags  = Tag::orderBy('name')->get();
     }
 
     public function render()
     {
-        return view('livewire.show-posts');
+        $posts = Post::online(1)->latest()->paginate(5);
+
+        return view('livewire.show-posts', ['posts' => $posts]);
     }
 }
